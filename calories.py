@@ -1,6 +1,5 @@
 import numpy as np
 import sys
-import os
 import shutil
 from datetime import date
 
@@ -23,7 +22,11 @@ def l_to_cups(l):
 
 def find_total():
     try:
-        food, quantity, units = np.loadtxt('calories.txt', skiprows=2, unpack=True, delimiter=',', dtype=str)
+        food, quantity, units = np.loadtxt('calories.txt',
+                                           skiprows=2,
+                                           unpack=True,
+                                           delimiter=',',
+                                           dtype=str)
         total = 0
         for i in range(len(food)):
             quant = float(quantity[i])
@@ -52,7 +55,7 @@ def find_total():
         print('Error finding total calories.')
 
 
-FOODS = {'banana':100, 'kiwi':50}
+FOODS = {'banana': 100, 'kiwi': 50}
 UNITS = ['ml', 'l', 'tsp', 'tbsp', 'cups', 'none']
 
 if sys.argv[1] == 'clear' or sys.argv[1] == 'init':
@@ -67,13 +70,13 @@ elif sys.argv[1] == 'dump':
         with open('calories.txt', 'a') as calories:
             calories.write(f'Total Calories:\n{find_total()}')
         source = 'calories.txt'
-        destination = f'{date.today()}.txt'
+        destination = f'C:\\Users\\antho\\OneDrive\\Documents\\coding\\py\\calories\\days\\{date.today()}.txt'
         shutil.copy(source, destination)
     except:
         print('Error dumping contents of calories file.')
 elif sys.argv[1] == 'add':
     try:
-        if sys.argv[2].lower() in FOODS: 
+        if sys.argv[2].lower() in FOODS:
             with open('calories.txt', 'a') as calories:
                 calories.write(f'{sys.argv[2]},{sys.argv[3]},{sys.argv[4]}\n')
         else:
@@ -89,5 +92,18 @@ elif sys.argv[1] == 'print':
             print(f'Total calories: {find_total()}')
     except:
         print('Error printing contents of calories file.')
+elif sys.argv[1] == 'avg':
+    try:
+        dir = "C:\\Users\\antho\\OneDrive\\Documents\\coding\\py\\calories\\days\\"
+        total_cals = 0.0
+        total_days = 0.0
+        for fname in os.listdir(dir):
+            fpath = os.path.join(dir, fname)
+            with open(filepath, 'r') as f:
+                total_days += 1.0
+                total_cals += float(f.readlines()[-1].strip())
+        print(f'Average Calories: {total_cals/total_days}')
+    except:
+        print('Error calculating average calorie consumption.')
 else:
     print('Invalid command.')
