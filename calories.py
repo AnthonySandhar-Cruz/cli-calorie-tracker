@@ -2,6 +2,7 @@ import numpy as np
 import sys
 import shutil
 from datetime import date
+import os
 
 
 def tbsp_to_cups(tbsp):
@@ -55,7 +56,9 @@ def find_total():
         print('Error finding total calories.')
 
 
-FOODS = {'banana': 100, 'kiwi': 50}
+FOODS = {'banana': 110, 'kiwi': 44, 'nuts': 600, 'cheese': 451,
+         'apple': 71, 'coffee': 50, 'eggs': 91, 'honey': 924,
+         'pb': 1386, 'ramen': 460, 'rice': 640}
 UNITS = ['ml', 'l', 'tsp', 'tbsp', 'cups', 'none']
 
 if sys.argv[1] == 'clear' or sys.argv[1] == 'init':
@@ -99,7 +102,7 @@ elif sys.argv[1] == 'avg':
         total_days = 0.0
         for fname in os.listdir(dir):
             fpath = os.path.join(dir, fname)
-            with open(filepath, 'r') as f:
+            with open(fpath, 'r') as f:
                 total_days += 1.0
                 total_cals += float(f.readlines()[-1].strip())
         print(f'Average Calories: {total_cals/total_days}')
