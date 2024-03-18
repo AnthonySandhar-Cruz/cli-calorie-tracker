@@ -112,8 +112,8 @@ elif sys.argv[1] == 'avg':
         print('Error calculating average calorie consumption.')
 elif sys.argv[1] == 'h' or sys.argv[1].lower() == 'help':
     print('Usage:')
-    print('- init/clear: Clears the contents of the calories file. Use this at the start of each day.')
-    print('- add food amount unit: Adds the given amount of food to your calories file. Use none for the unit if there is no applicable unit for it.')
+    print('- init OR clear: Clears the contents of the calories file. Use this at the start of each day. Make sure to use dump at the end of each day to save your progress so that this does not clear your unsaved progress.')
+    print('- add *food *amount *unit: Adds the given amount of food to your calories file. Use none for the unit if there is no applicable unit for it.')
     print('- print: Show the current contents of the calories file and the total calories.')
     print('- total: Prints the current calorie total of the calories file.')
     print('- dump: Saves the current contents of the calories file (and the total calories) to the location specified in the code with the title being the current date. This action will delete the conetents of the calories file when it is finished.')
