@@ -18,6 +18,8 @@ function Run-Calories {
 Set-Alias cal Run-Calories
 ```
 
+Add this to your Powershell profile by using the command ```notepad $PROFILE``` from Powershell. Replace 'notepad' with the text editor of your choice.
+
 Type ```h``` or ```help``` to see a list of available commands. The output of this is shown below:
 
   - init/clear: Clears the contents of the calories file. Use this at the start of each day.
