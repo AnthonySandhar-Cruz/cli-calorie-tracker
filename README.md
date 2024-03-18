@@ -10,7 +10,7 @@ There are 3 things that must be modified in 'calories.py'.
 ## Usage
 It is recommended you set an alias for running the Python file. This will allow you to run the program from any directory. It is important that the alias allows for arguments so that the program runs without errors. Here is an example using Windows Powershell. Replace 'PATH_TO_CALORIES' with the path to the calories.py file, and 'cal' with whatever alias you want to use.
 
-```
+```powershell
 function Run-Calories {
 		python PATH_TO_CALORIES\calories.py $args
 	}
@@ -28,3 +28,34 @@ Type ```h``` or ```help``` to see a list of available commands. The output of th
   - total: Prints the current calorie total of the calories file.
   - dump: Saves the current contents of the calories file (and the total calories) to the location specified in the code with the title being the current date. This action will delete the conetents of the calories file when it is finished.
   - avg: Prints the average daily calories from all of the saved calorie files.
+
+## Example
+In this example, we will assume that the foods being added have already been added to the 'FOODS' dictionary with their associated number of calories. We will also assume an alias is set for running the file which is called 'cal'.
+
+Here we will initialize the calories file and add our breakfast
+
+```powershell
+cal init
+cal add banana 1 none
+cal add coffee 1 none
+cal add apple 1 none
+cal add eggs 2 none
+cal add potatoes 1 cups
+cal add toast 2 none
+cal add bacon 2 none
+```
+
+We can check the current total calories with
+
+```powershell
+cal total
+```
+
+This can be alternatively be done with ```print``` if you want to also see the contents of the calories file. Now let's say its the end of the day and you want to save today's calories file. Simply do
+
+```
+cal dump
+```
+
+This will copy the contents of the calories file to the directory specified by 'PATH_TO_SAVE' with the current date as the file name. Then you can repeat the process the next day.
+
