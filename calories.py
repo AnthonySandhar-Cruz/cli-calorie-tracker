@@ -74,9 +74,6 @@ elif sys.argv[1] == 'dump':
             calories.write(f'Total Calories:\n{find_total()}')
         destination = f'{PATH_TO_SAVE}{date.today()}.txt'
         shutil.copy(PATH_TO_CALS, destination)
-        with open(PATH_TO_CALS, 'w') as calories:
-            calories.write(f'Date: {date.today()}\n')
-            calories.write('Food,Quantity,Units\n')
     except:
         print('Error dumping contents of calories file.')
 elif sys.argv[1] == 'add':
