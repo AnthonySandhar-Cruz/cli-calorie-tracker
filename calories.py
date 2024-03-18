@@ -23,7 +23,7 @@ def l_to_cups(l):
 
 def find_total():
     try:
-        food, quantity, units = np.loadtxt('C:\\Users\\antho\\OneDrive\\Documents\\coding\\py\\calories\\calories.txt',
+        food, quantity, units = np.loadtxt(PATH_TO_CALS,
                                            skiprows=2,
                                            unpack=True,
                                            delimiter=',',
@@ -56,28 +56,25 @@ def find_total():
         print('Error finding total calories.')
 
 
-FOODS = {'banana': 110, 'kiwi': 44, 'nuts': 600, 'cheese': 451,
-         'apple': 71, 'coffee': 50, 'eggs': 91, 'honey': 924,
-         'pb': 1386, 'ramen': 460, 'rice': 640, 'dates': 66.5,
-         'cabbage': 17, 'onion': 46, 'pasta': 387.5, 'sauce': 80,
-         'vgb': 133.3, 'salad': 150, 'cucumber': 45}
+FOODS = {}
 UNITS = ['ml', 'l', 'tsp', 'tbsp', 'cups', 'none']
+PATH_TO_CALS = 'calories.txt'
+PATH_TO_SAVE = 'days\\'
 
 if sys.argv[1] == 'clear' or sys.argv[1] == 'init':
     try:
-        with open('C:\\Users\\antho\\OneDrive\\Documents\\coding\\py\\calories\\calories.txt', 'w') as calories:
+        with open(PATH_TO_CALS, 'w') as calories:
             calories.write(f'Date: {date.today()}\n')
             calories.write('Food,Quantity,Units\n')
     except:
         print('Error clearing calories file.')
 elif sys.argv[1] == 'dump':
     try:
-        with open('C:\\Users\\antho\\OneDrive\\Documents\\coding\\py\\calories\\calories.txt', 'a') as calories:
+        with open(PATH_TO_CALS, 'a') as calories:
             calories.write(f'Total Calories:\n{find_total()}')
-        source = 'C:\\Users\\antho\\OneDrive\\Documents\\coding\\py\\calories\\calories.txt'
-        destination = f'C:\\Users\\antho\\OneDrive\\Documents\\coding\\py\\calories\\days\\{date.today()}.txt'
-        shutil.copy(source, destination)
-        with open('C:\\Users\\antho\\OneDrive\\Documents\\coding\\py\\calories\\calories.txt', 'w') as calories:
+        destination = f'{PATH_TO_SAVE}{date.today()}.txt'
+        shutil.copy(PATH_TO_CALS, destination)
+        with open(PATH_TO_CALS, 'w') as calories:
             calories.write(f'Date: {date.today()}\n')
             calories.write('Food,Quantity,Units\n')
     except:
@@ -85,7 +82,7 @@ elif sys.argv[1] == 'dump':
 elif sys.argv[1] == 'add':
     try:
         if sys.argv[2].lower() in FOODS:
-            with open('C:\\Users\\antho\\OneDrive\\Documents\\coding\\py\\calories\\calories.txt', 'a') as calories:
+            with open(PATH_TO_CALS, 'a') as calories:
                 calories.write(f'{sys.argv[2]},{sys.argv[3]},{sys.argv[4]}\n')
         else:
             print('Please add food to dictionary.')
@@ -95,14 +92,14 @@ elif sys.argv[1] == 'total':
     print(find_total())
 elif sys.argv[1] == 'print':
     try:
-        with open('C:\\Users\\antho\\OneDrive\\Documents\\coding\\py\\calories\\calories.txt', 'r') as calories:
+        with open(PATH_TO_CALS, 'r') as calories:
             print(calories.read())
             print(f'Total calories: {find_total()}')
     except:
         print('Error printing contents of calories file.')
 elif sys.argv[1] == 'avg':
     try:
-        dir = "C:\\Users\\antho\\OneDrive\\Documents\\coding\\py\\calories\\days\\"
+        dir = PATH_TO_SAVE
         total_cals = 0.0
         total_days = 0.0
         for fname in os.listdir(dir):
