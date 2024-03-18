@@ -22,7 +22,7 @@ Add this to your Powershell profile by using the command ```notepad $PROFILE``` 
 
 Type ```h``` or ```help``` to see a list of available commands. The output of this is shown below:
 
-  - init/clear: Clears the contents of the calories file. Use this at the start of each day.
+  - init OR clear: Clears the contents of the calories file. Use this at the start of each day. Make sure to use dump at the end of each day to save your progress so that this does not clear your unsaved progress.
   - add *food *amount *unit: Adds the given amount of food to your calories file. Use none for the unit if there is no applicable unit for it.
   - print: Show the current contents of the calories file and the total calories.
   - total: Prints the current calorie total of the calories file.
