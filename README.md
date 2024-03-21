@@ -1,5 +1,5 @@
 # Command Line Calorie Tracker
-A command line tool for tracking and saving your daily calorie intake written in Python.
+A command line tool for tracking and saving your daily calorie intake (and other nutritional information) written in Python.
 
 ## Set Up
 There are 3 things that must be modified in 'calories.py'. 
@@ -25,13 +25,13 @@ Type ```h``` or ```help``` to see a list of available commands. The output of th
   - init OR clear: Clears the contents of the calories file. Use this at the start of each day. Make sure to use dump at the end of each day to save your progress so that this does not clear your unsaved progress.
   - add *food *amount *unit: Adds the given amount of food to your calories file. Use none for the unit if there is no applicable unit for it.
   - print: Show the current contents of the calories file and the total calories.
-  - total: Prints the current calorie total of the calories file.
-  - dump: Saves the current contents of the calories file (and the total calories) to the location specified in the code with the title being the current date. This action will delete the conetents of the calories file when it is finished.
-  - avg: Prints the average daily calories from all of the saved calorie files.
-  - sheet: Creates a spreadsheet of all the saved calorie files.
+  - total: Prints the current total of the calories, and macros for today.
+  - dump: Saves the current contents of the calories file (and the total) to the location specified by SAVE_DIR with the title being the current date. This action will delete the conetents of the calories file when it is finished.
+  - avg: Prints the average daily calories and macros from all of the saved calorie files.
+  - sheet: Creates a spreadsheet of all the saved calorie files and formats it nicely (saves as xlsx).
 
 ## Example
-In this example, we will assume that the foods being added have already been added to the 'FOODS' dictionary with their associated number of calories. We will also assume an alias is set for running the file which is called 'cal'.
+In this example, we will assume that the foods being added have already been added to the 'FOODS' dictionary with their associated number of calories and other macros. We will also assume an alias is set for running the file which is called 'cal'.
 
 Here we will initialize the calories file and add our breakfast
 
@@ -46,7 +46,7 @@ cal add toast 2 none
 cal add bacon 2 none
 ```
 
-We can check the current total calories with
+We can check the current total calories and macros with
 
 ```powershell
 cal total
@@ -54,9 +54,20 @@ cal total
 
 This can be alternatively be done with ```print``` if you want to also see the contents of the calories file. Now let's say its the end of the day and you want to save today's calories file. Simply do
 
-```
+```powershell
 cal dump
 ```
 
-This will copy the contents of the calories file to the directory specified by 'PATH_TO_SAVE' with the current date as the file name. Then you can repeat the process the next day.
+This will copy the contents of the calories file to the directory specified by 'PATH_TO_SAVE' with the current date as the file name. Then you can repeat the process the next day. If you want to see the average total calories and macros from everything in SAVE_DIR, use 
 
+```powershell
+cal avg
+```
+
+To see all nutritional information by date in a spreadsheet, use 
+
+```powershell
+cal sheet
+```
+
+This will create the file 'calories_spreadsheet.xlsx' which you can view in Excel, Sheets, or LibreOffice Calc.
