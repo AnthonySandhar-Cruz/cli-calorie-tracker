@@ -101,17 +101,10 @@ def find_total():
 
 
 # 'food': [calories, protein, fat, carbs, sugar]
-FOODS = {'banana': [110, 1, 0, 28, 15], 'kiwi': [46, 1, 0, 11, 7], 'nuts': [600, 18, 52, 24, 6],
-         'apple': [72, 0, 0, 19, 14], 'coffee': [50, 0, 0, 0, 0], 'eggs': [72, 6.3, 4.8, 0.4, 0.2],
-         'honey': [960, 0, 0, 272, 256], 'pb': [1440, 48, 112, 64, 16], 'ramen': [460, 10, 19, 62, 0],
-         'rice': [640, 12, 0, 144, 0], 'dates': [66.5, 0.4, 0, 18, 16], 'cabbage': [17, 0, 0, 0, 0],
-         'onion': [46, 1.3, 0.1, 11, 4.9], 'pasta': [387.5, 15, 2, 77.5, 3.75], 'sauce': [80, 4, 0, 14, 8],
-         'vgb': [133.3, 24, 2, 12, 2.67], 'salad': [150, 4, 11, 9, 3], 'cucumber': [30, 1.3, 0.2, 7.3, 3.4],
-         'seeds': [840, 45, 75, 15, 3], 'asparagus': [27, 2.9, 0.2, 5, 2.5], 'chicken': [179, 24.8, 8.2, 0, 0],
-         'cheese': [90, 5, 8, 0, 0]}
+FOODS = {}
 UNITS = ['ml', 'l', 'tsp', 'tbsp', 'cups', 'none']
-SAVE_DIR = 'C:\\Users\\antho\\OneDrive\\Documents\\coding\\py\\calories\\days\\'
-CALS_TMP = 'C:\\Users\\antho\\OneDrive\\Documents\\coding\\py\\calories\\t_calories.txt'
+SAVE_DIR = 'days\\'
+CALS_TMP = 'calories.txt'
 
 if sys.argv[1] == 'clear' or sys.argv[1] == 'init':
     try:
@@ -172,7 +165,7 @@ elif sys.argv[1] == 'avg':
     except:
         print('Error calculating average calorie consumption.')
 elif sys.argv[1] == 'sheet':
-    workbook = xlsxwriter.Workbook('C:\\Users\\antho\\OneDrive\\Documents\\coding\\py\\calories\\calories_spreadsheet.xlsx')
+    workbook = xlsxwriter.Workbook(f'{SAVE_DIR}calories_spreadsheet.xlsx')
     worksheet = workbook.add_worksheet()
     bold = workbook.add_format({'bold': True, 'center_across': True, 'border': True, 'valign': 'vcenter', 'bg_color': '#0000FF', 'font_color': '#FFFFFF'})
     wrap1 = workbook.add_format({'text_wrap': True, 'center_across': True, 'border': True, 'valign': 'vcenter', 'bg_color': '#D9D9D9', 'font_color': '#000000'})
@@ -184,7 +177,6 @@ elif sys.argv[1] == 'sheet':
     worksheet.write('E1', 'Total Fat', bold)
     worksheet.write('F1', 'Total Carbs', bold)
     worksheet.write('G1', 'Total Sugar', bold)
-    # Loop through the saved files and write the contents to the spreadsheet.
     row = 1
     for fname in os.listdir(SAVE_DIR):
         fpath = os.path.join(SAVE_DIR, fname)
