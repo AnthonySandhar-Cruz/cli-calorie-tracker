@@ -3,7 +3,26 @@ A command line tool for tracking and saving your daily calorie intake (and other
 
 ## Set Up
 There are 3 things that must be modified in 'calories.py'. 
-1. The 'FOODS' dictionary must be filled out so that the key is a one word string representing a food item and the value is a list containing the nutritional information (see comment above FOODS definition for format). The information should be per cup of that food, except for foods you want to measure in discrete numbers, such as number of bananas. See 'UNITS' list to see available units. The 'none' unit is used for the food items that will be measured in discrete numbers. Additional units can be added, but a conversion function must be written, and a case for that unit must be added to the 'add' command.
+1. The 'FOODS' dictionary is loaded from a JSON file called 'foods.json'. The information in this file is stored in the following manner:
+```json
+{
+    "food1": {
+        "calories": 100,
+        "protein": 10,
+        "fat": 5,
+        "carbs": 20,
+        "sugar": 10
+    },
+    "food2": {
+        "calories": 200,
+        "protein": 15,
+        "fat": 10,
+        "carbs": 30,
+        "sugar": 15
+    }
+}
+```
+The information should be per cup of that food, except for foods you want to measure in discrete numbers, such as number of bananas. See 'UNITS' list to see available units. The 'none' unit is used for the food items that will be measured in discrete numbers. Additional units can be added, but a conversion function must be written, and a case for that unit must be added to the 'add' command.
 2. The 'CALS_TMP' variable must be set to the file path of wherever you want to store the temporary file containing the current daily calorie information. This should be a '.txt' file.
 3. The 'SAVE_DIR' variable must be set to the file path of wherever you want to store the saved daily calorie files. The 'dump' command will copy the current calorie file to this path with the title being the current date, then it will clear the contents of the current calorie file.
 

@@ -1,0 +1,16 @@
+{
+	"b_sausage": {
+		"Calories": 66.67,
+		"Protein": 3.67,
+		"Fat": 5.67,
+		"Carbs": 0.67,
+		"Sugar": 0
+	},
+	"sausage": {
+		"Calories": 210,
+		"Protein": 11,
+		"Fat": 17,
+		"Carbs": 2,
+		"Sugar": 1
+	}
+}

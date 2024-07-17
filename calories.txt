@@ -1,0 +1,4 @@
+Date: 2024-07-17
+Food,Quantity,Units
+b_sausage,1,none
+sausage,2,none

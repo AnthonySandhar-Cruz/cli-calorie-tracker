@@ -4,6 +4,7 @@ import shutil
 from datetime import date
 import os
 import xlsxwriter
+import json
 
 
 def tbsp_to_cups(tbsp):
@@ -23,11 +24,11 @@ def l_to_cups(l):
 
 
 def find_macros(quant, food):
-    cals = FOODS[food][0]*quant
-    protein = FOODS[food][1]*quant
-    fat = FOODS[food][2]*quant
-    carbs = FOODS[food][3]*quant
-    sugar = FOODS[food][4]*quant
+    cals = float(FOODS[food]["Calories"])*quant
+    protein = float(FOODS[food]["Protein"])*quant
+    fat = float(FOODS[food]["Fat"])*quant
+    carbs = float(FOODS[food]["Carbs"])*quant
+    sugar = float(FOODS[food]["Sugar"])*quant
     return [cals, protein, fat, carbs, sugar]
 
 
@@ -45,7 +46,7 @@ def find_total():
         total_sugar = 0
         for i in range(len(food)):
             quant = float(quantity[i])
-            if food[i].lower() in FOODS and units[i].lower() in UNITS:
+            if food[i] in FOODS and units[i].lower() in UNITS:
                 match units[i].lower():
                     case 'cups':
                         macros = find_macros(quant, food[i])
@@ -100,10 +101,9 @@ def find_total():
         print('Error finding total calories.')
 
 
-# 'food': [calories, protein, fat, carbs, sugar]
-FOODS = {}
+FOODS = json.load(open('foods.json', 'r'))
 UNITS = ['ml', 'l', 'tsp', 'tbsp', 'cups', 'none']
-SAVE_DIR = 'days\\'
+SAVE_DIR = 'days/'
 CALS_TMP = 'calories.txt'
 
 if sys.argv[1] == 'clear' or sys.argv[1] == 'init':
