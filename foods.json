@@ -1,12 +1,12 @@
 {
-	"b_sausage": {
+	"food1": {
 		"Calories": 66.67,
 		"Protein": 3.67,
 		"Fat": 5.67,
 		"Carbs": 0.67,
 		"Sugar": 0
 	},
-	"sausage": {
+	"food2": {
 		"Calories": 210,
 		"Protein": 11,
 		"Fat": 17,
